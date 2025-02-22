@@ -1,0 +1,25 @@
+ul li + li {
+  margin-top: 10px;
+}
+
+li {
+  cursor: pointer;
+  transition: all .2s;
+  border-radius: 25px;
+
+  & > a {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    }
+}
+
+li:hover {
+  background-color: antiquewhite;
+}
+
+.container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
