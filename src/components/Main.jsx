@@ -5,6 +5,7 @@ import Home from "./Home";
 import Settings from "./Settings";
 import ToDo from "./ToDo.jsx";
 import Profile from "./Profile.jsx";
+import CreateHabit from "./CreateHabit.jsx";
 
 export default function Main(){
     return (
@@ -12,6 +13,7 @@ export default function Main(){
             <Routes>
                 <Route path="/" element={<Header />}>
                     <Route path="/habits/" element={<Habits />} />
+                    <Route path="/create-habit/" element={<CreateHabit />} />
                     <Route path="/" index element={<Home />} />
                     <Route path="/toDoList/" element={<ToDo />} />
                     <Route path="/profile/" element={<Profile />} />

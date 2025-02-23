@@ -18,25 +18,35 @@ export default function Layout() {
     const DrawerList = (
         <Box sx={{width: "200px"}}>
             <List>
-                <ListItem onClick={() => setOpen(false)}>
-                    <Link to="/"> <p> Home </p> <HomeIcon /> </Link>
-                </ListItem>
+                <Link to="/">
+                    <ListItem onClick={() => setOpen(false)}>
+                        <p> Home </p> <HomeIcon />
+                    </ListItem>
+                </Link>
 
-                <ListItem onClick={() => setOpen(false)}>
-                    <Link to="/habits/"> <p>Habits</p> <ChecklistIcon /> </Link>
-                </ListItem>
+                <Link to="/habits/">
+                    <ListItem onClick={() => setOpen(false)}>
+                        <p>Habits</p> <ChecklistIcon />
+                    </ListItem>
+                </Link>
 
-                <ListItem onClick={() => setOpen(false)}>
-                    <Link to="/toDoList"> <p>To Do List</p> <CheckIcon /> </Link>
-                </ListItem>
+                <Link to="/toDoList">
+                    <ListItem onClick={() => setOpen(false)}>
+                        <p>To Do List</p> <CheckIcon />
+                    </ListItem>
+                </Link>
 
-                <ListItem onClick={() => setOpen(false)}>
-                    <Link to="/profile"> <p>Profile</p> <AccountBoxIcon /></Link>
-                </ListItem>
+                <Link to="/profile">
+                    <ListItem onClick={() => setOpen(false)}>
+                        <p>Profile</p> <AccountBoxIcon />
+                    </ListItem>
+                </Link>
 
-                <ListItem onClick={() => setOpen(false)}>
-                    <Link to="/settings"> <p>Settings</p> <SettingsIcon /> </Link>
-                </ListItem>
+                <Link to="/settings">
+                    <ListItem onClick={() => setOpen(false)}>
+                        <p>Settings</p> <SettingsIcon />
+                    </ListItem>
+                </Link>
             </List>
         </Box>
     )
