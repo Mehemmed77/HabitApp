@@ -6,18 +6,31 @@ import {useState} from "react";
 import Select from '@mui/material/Select';
 import "../scss/createHabit.scss"
 import FormControl from '@mui/material/FormControl';
+import Weeks from "./Weeks.jsx";
+import CustomFrequency from "./CustomFrequency.jsx";
+
+const sx = {width: "260px", background: "white"}
 
 export default function CreateHabit(){
-    const sx = {width: "260px", background: "white",}
-
+    const [weeks, setWeeks] = useState([]);
     const [frequency, setFrequency] = useState("d");
+    const [frequencyForm, setFrequencyForm] = useState(<></>);
+
+    const [frequencyTable, setFrequencyTable] = useState({
+        "d": "everyday",
+        "w":  undefined,
+        "c": undefined
+    });
 
     const handleChange = (e) => {
-        setFrequency(e.target.value);
+        const value = e.target.value;
+        setFrequency(value);
 
-        if (e.target.value === "w") {
+        if(value === "d") setFrequencyForm(<></>);
 
-        }
+        if (value === "w") setFrequencyForm(<Weeks weeks={weeks} setWeeks={setWeeks} />);
+
+        if (value === "c") setFrequencyForm(<CustomFrequency/>);
     }
 
     const form = (
@@ -32,13 +45,7 @@ export default function CreateHabit(){
 
             <FormControl>
                 <InputLabel id="select-label">Frequency</InputLabel>
-                <Select
-                    labelId="select-label"
-                    value={frequency}
-                    label="Frequency"
-                    onChange={handleChange}
-                    sx={{width:"200px"}}
-                >
+                <Select labelId="select-label" value={frequency} label="Frequency" onChange={handleChange} sx={{width:"200px"}}>
                     <MenuItem value={"d"}>Daily</MenuItem>
                     <MenuItem value={"w"}>Weekly</MenuItem>
                     <MenuItem value={"c"}>Custom</MenuItem>
@@ -46,7 +53,7 @@ export default function CreateHabit(){
             </FormControl>
 
             <FormControl>
-
+                {frequencyForm}
             </FormControl>
         </div>
     )
