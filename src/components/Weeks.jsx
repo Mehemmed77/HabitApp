@@ -1,4 +1,4 @@
-import {Typography} from "@mui/material";
+import {Typography} from "@mui/material"; 
 import "../scss/weeks.scss"
 import Box from "@mui/material/Box";
 

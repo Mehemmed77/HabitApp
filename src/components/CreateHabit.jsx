@@ -13,14 +13,9 @@ const sx = {width: "260px", background: "white"}
 
 export default function CreateHabit(){
     const [weeks, setWeeks] = useState([]);
+    const [custom, setCustom] = useState({});
     const [frequency, setFrequency] = useState("d");
     const [frequencyForm, setFrequencyForm] = useState(<></>);
-
-    const [frequencyTable, setFrequencyTable] = useState({
-        "d": "everyday",
-        "w":  undefined,
-        "c": undefined
-    });
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -30,7 +25,7 @@ export default function CreateHabit(){
 
         if (value === "w") setFrequencyForm(<Weeks weeks={weeks} setWeeks={setWeeks} />);
 
-        if (value === "c") setFrequencyForm(<CustomFrequency/>);
+        if (value === "c") setFrequencyForm(<CustomFrequency setCustom={setCustom} />);
     }
 
     const form = (
@@ -60,6 +55,7 @@ export default function CreateHabit(){
 
     return <>
         <h1>Add Habit</h1>
+        {weeks.toString()}
         {form}
     </>
 }

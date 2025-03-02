@@ -4,28 +4,46 @@ import InputLabel from '@mui/material/InputLabel';
 import Slider from '@mui/material/Slider';
 import {useState} from "react";
 
-export default function CustomFrequency() {
+export default function CustomFrequency({setCustom}) {
     const [value, setValue] = useState("");
-    const [form, setForm] = useState(<> </>);
 
-    const handleChange = (e) => {
-        const value = e.target.value;
-        setValue(value);
+    const [X1, setX1] = useState(2);
+    const [X2, setX2] = useState(2);
 
-        if(value === 1) {
-            setForm(<Slider sx={{width: "200px"}} aria-label="Days" defaultValue={4} valueLabelDisplay="auto" step={1} marks min={2} max={7}/>)
-        }
-        if(value === 2) setForm(<></>);
-        if (value === 3) setForm(<Slider sx={{width: "300px"}} aria-label="Days" defaultValue={10} valueLabelDisplay="auto" step={1} marks min={5} max={40}/>);
+    const handleChange = (event) => {
+        const new_val = event.target.value;
+        setValue(new_val);
+
+        if(new_val === "indefinitely") setCustom({"indefinitely" : ""});
+
+        if(new_val === "X days") setCustom({"X days": X1});
+
+        if(new_val === " X occurrences") setCustom({"X occurrences": X2});
     }
 
     return <>
         <InputLabel id="custom-label">Custom Date</InputLabel>
-        <Select labelId="custom-label" value={value} label="Custom Date" onChange={handleChange} sx={{width:"200px"}}>
-            <MenuItem value={1}>Every X days</MenuItem>
-            <MenuItem value={2}>Indefinitely</MenuItem>
-            <MenuItem value={3}>Stop after X occurrence</MenuItem>
+        <Select required labelId="custom-label" value={value} label="Custom Date" onChange={handleChange} sx={{width:"200px"}}>
+            <MenuItem value={"X days"}>Every X days</MenuItem>
+            <MenuItem value={"indefinitely"}>Indefinitely</MenuItem>
+            <MenuItem value={"X occurrences"}>Stop after X occurrence</MenuItem>
         </Select>
-        {form}
+        {value === "X days" && (
+            <Slider sx={{ width: "200px" }} value={X1}
+                    onChange={(e, v) => {
+                        setX1(v);
+                        setCustom({"X days": X1});
+                    }}
+                    aria-label="Days" valueLabelDisplay="auto" step={1} marks min={2} max={7}/>
+        )}
+
+        {value === "X occurrences" && (
+            <Slider sx={{ width: "300px" }} value={X2}
+                    onChange={(e, v) => {
+                        setX2(v);
+                        setCustom({"X occurrences": X2});
+                    }}
+                    aria-label="Days" valueLabelDisplay="auto" step={1} marks min={5} max={40}/>
+        )}
     </>
 }
